@@ -3,7 +3,7 @@ import 'package:local_db/pages/setting_page.dart';
 import 'package:local_db/services/pref_service.dart';
 import 'package:local_db/services/sql_service.dart';
 
-import '../models/credit_card_model.dart';
+import '../models/nosql_card_model.dart';
 import '../models/sql_card_model.dart';
 import '../services/hive_service.dart';
 import 'details_page.dart';
@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool isSql = true;
   List<SqlCard> sqlCards = [];
-  List<CreditCard> noSqlCards = [];
+  List<NoSqlCard> noSqlCards = [];
 
   Future openDetailsPage() async {
     var result = await Navigator.of(context).push(
@@ -173,7 +173,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  Widget _itemNoSqlCardList(CreditCard card) {
+  Widget _itemNoSqlCardList(NoSqlCard card) {
     return GestureDetector(
       onLongPress: () {
         // print(typeDatabase);

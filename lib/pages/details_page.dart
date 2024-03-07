@@ -4,7 +4,7 @@ import 'package:local_db/services/pref_service.dart';
 import 'package:local_db/services/sql_service.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-import '../models/credit_card_model.dart';
+import '../models/nosql_card_model.dart';
 import '../services/hive_service.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -46,8 +46,8 @@ class _DetailsPageState extends State<DetailsPage> {
       String cardNumber = cardNumberController.text;
       String expiredDate = expiredDateController.text;
 
-      CreditCard creditCard =
-      CreditCard(cardNumber: cardNumber, expiredDate: expiredDate);
+      NoSqlCard noSqlCard =
+      NoSqlCard(cardNumber: cardNumber, expiredDate: expiredDate);
 
       if (cardNumber.trim().isEmpty || cardNumber.length < 16) {
         return;
@@ -58,15 +58,15 @@ class _DetailsPageState extends State<DetailsPage> {
       }
 
       if (cardNumber.startsWith('4')) {
-        creditCard.cardImage = 'assets/images/ic_card_visa.png';
-        creditCard.cardType = 'visa';
+        noSqlCard.cardImage = 'assets/images/ic_card_visa.png';
+        noSqlCard.cardType = 'visa';
       } else if (cardNumber.startsWith('5')) {
-        creditCard.cardImage = 'assets/images/ic_card_master.png';
-        creditCard.cardType = 'master';
+        noSqlCard.cardImage = 'assets/images/ic_card_master.png';
+        noSqlCard.cardType = 'master';
       } else {
         return;
       }
-      HiveService.saveCreditCard(creditCard);
+      HiveService.saveCreditCard(noSqlCard);
       backToFinish();
     });
   }

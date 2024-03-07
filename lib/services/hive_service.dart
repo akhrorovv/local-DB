@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-import '../models/credit_card_model.dart';
+import '../models/nosql_card_model.dart';
 
 class HiveService {
   static var box = Hive.box('my_nosql');
@@ -9,27 +9,27 @@ class HiveService {
     final appDocumentDirectory = await getApplicationDocumentsDirectory();
     Hive
       ..init(appDocumentDirectory.path)
-      ..registerAdapter(CreditCardAdapter());
+      ..registerAdapter(NoSqlCardAdapter());
     await Hive.openBox("my_nosql");
   }
 
   /// Save object without key
-  static saveCreditCard(CreditCard creditCard) async {
-    box.add(creditCard);
+  static saveCreditCard(NoSqlCard noSqlCard) async {
+    box.add(noSqlCard);
   }
 
-  static updateCreditCard(int index,CreditCard creditCard) async {
-    box.putAt(index, creditCard);
+  static updateCreditCard(int index,NoSqlCard noSqlCard) async {
+    box.putAt(index, noSqlCard);
   }
 
-  static List<CreditCard> getAllCreditCards() {
+  static List<NoSqlCard> getAllCreditCards() {
     // List creditCards = box.values.toList();
-    List<CreditCard> creditCards = [];
+    List<NoSqlCard> noSqlCards = [];
     for (int i = 0; i < box.length; i++) {
       var card = box.getAt(i);
-      creditCards.add(card);
+      noSqlCards.add(card);
     }
-    return creditCards;
+    return noSqlCards;
   }
 
   static deleteCreditCardByIndex(int index) async {
