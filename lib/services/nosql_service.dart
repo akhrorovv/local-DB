@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import '../models/nosql_card_model.dart';
 
-class HiveService {
+class NoSqlService {
   static var box = Hive.box('my_nosql');
 
   static Future<void> init() async {
@@ -22,7 +22,7 @@ class HiveService {
     box.putAt(index, noSqlCard);
   }
 
-  static List<NoSqlCard> getAllCreditCards() {
+  static List<NoSqlCard> fetchNoSqlCards() {
     // List creditCards = box.values.toList();
     List<NoSqlCard> noSqlCards = [];
     for (int i = 0; i < box.length; i++) {

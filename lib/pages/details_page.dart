@@ -5,7 +5,7 @@ import 'package:local_db/services/sql_service.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../models/nosql_card_model.dart';
-import '../services/hive_service.dart';
+import '../services/nosql_service.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({super.key});
@@ -66,7 +66,7 @@ class _DetailsPageState extends State<DetailsPage> {
       } else {
         return;
       }
-      HiveService.saveCreditCard(noSqlCard);
+      NoSqlService.saveCreditCard(noSqlCard);
       backToFinish();
     });
   }

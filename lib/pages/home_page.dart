@@ -5,7 +5,7 @@ import 'package:local_db/services/sql_service.dart';
 
 import '../models/nosql_card_model.dart';
 import '../models/sql_card_model.dart';
-import '../services/hive_service.dart';
+import '../services/nosql_service.dart';
 import 'details_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
         noSqlCards.clear();
       });
     } else{
-      var myCards = HiveService.getAllCreditCards();
+      var myCards = NoSqlService.fetchNoSqlCards();
       setState(() {
         noSqlCards = myCards;
         sqlCards.clear();
